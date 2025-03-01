@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { auth } from '../firebase/config';
 import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { Link, useNavigate } from 'react-router-dom';
-import { GiMeditation } from 'react-icons/gi';
 import { FiMail, FiLock, FiUser } from 'react-icons/fi';
 import { FcGoogle } from 'react-icons/fc';
 
@@ -61,12 +60,16 @@ const Signup = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <GiMeditation
-          size={50}
+        <img
+          src="/yogaimage.jpg"
+          alt="Yoga Logo"
           style={{
             margin: '0 auto',
+            marginBottom: '1.5rem',
             display: 'block',
-            color: '#764ba2'
+            width: 'clamp(80px, 15%, 100px)',  // Responsive size
+            objectFit: 'contain',
+            borderRadius: '10px'
           }}
         />
         <Title>Create Account</Title>
