@@ -5,7 +5,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { GiMeditation } from 'react-icons/gi';
 import { FiMail, FiLock, FiUser } from 'react-icons/fi';
 import { FcGoogle } from 'react-icons/fc';
-import { FaFacebook } from 'react-icons/fa';
 
 import {
   AuthContainer,
@@ -62,13 +61,13 @@ const Signup = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <GiMeditation 
-          size={50} 
-          style={{ 
-            margin: '0 auto', 
-            display: 'block', 
-            color: '#764ba2' 
-          }} 
+        <GiMeditation
+          size={50}
+          style={{
+            margin: '0 auto',
+            display: 'block',
+            color: '#764ba2'
+          }}
         />
         <Title>Create Account</Title>
         <Subtitle>Join our wellness community today</Subtitle>
@@ -78,24 +77,14 @@ const Signup = () => {
           Sign up with Google
         </SocialButton>
 
-        <SocialButton 
-          onClick={() => alert('Facebook signup coming soon')}
-          style={{ 
-            background: '#1877f2', 
-            color: 'white',
-            marginTop: '10px'
-          }}
-        >
-          <FaFacebook size={20} />
-          Sign up with Facebook
-        </SocialButton>
+
 
         <Divider><span>or sign up with email</span></Divider>
 
         {error && (
-          <div style={{ 
-            color: '#ff3333', 
-            textAlign: 'center', 
+          <div style={{
+            color: '#ff3333',
+            textAlign: 'center',
             marginBottom: '1rem',
             background: 'rgba(255, 51, 51, 0.1)',
             padding: '10px',

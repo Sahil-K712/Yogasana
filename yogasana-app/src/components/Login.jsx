@@ -5,7 +5,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { GiMeditation } from 'react-icons/gi';
 import { FiMail, FiLock } from 'react-icons/fi';
 import { FcGoogle } from 'react-icons/fc';  // Google icon
-import { FaFacebook } from 'react-icons/fa';  // Facebook icon (if needed)
 
 
 
@@ -59,13 +58,13 @@ const Login = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <GiMeditation 
-          size={50} 
-          style={{ 
-            margin: '0 auto', 
-            display: 'block', 
-            color: '#764ba2' 
-          }} 
+        <GiMeditation
+          size={50}
+          style={{
+            margin: '0 auto',
+            display: 'block',
+            color: '#764ba2'
+          }}
         />
         <Title>Welcome Back</Title>
         <Subtitle>Continue your wellness journey with us</Subtitle>
@@ -75,25 +74,14 @@ const Login = () => {
           Continue with Google
         </SocialButton>
 
-        {/* Optional Facebook Login Button */}
-        <SocialButton 
-          onClick={() => alert('Facebook login coming soon')}
-          style={{ 
-            background: '#1877f2', 
-            color: 'white',
-            marginTop: '10px'
-          }}
-        >
-          <FaFacebook size={20} />
-          Continue with Facebook
-        </SocialButton>
+
 
         <Divider><span>or continue with email</span></Divider>
 
         {error && (
-          <div style={{ 
-            color: '#ff3333', 
-            textAlign: 'center', 
+          <div style={{
+            color: '#ff3333',
+            textAlign: 'center',
             marginBottom: '1rem',
             background: 'rgba(255, 51, 51, 0.1)',
             padding: '10px',
@@ -126,15 +114,15 @@ const Login = () => {
             />
           </InputGroup>
 
-          <div style={{ 
-            textAlign: 'right', 
-            marginTop: '-0.5rem', 
-            marginBottom: '0.5rem' 
+          <div style={{
+            textAlign: 'right',
+            marginTop: '-0.5rem',
+            marginBottom: '0.5rem'
           }}>
-            <Link to="/forgot-password" style={{ 
-              color: '#764ba2', 
-              textDecoration: 'none', 
-              fontSize: '0.9rem' 
+            <Link to="/forgot-password" style={{
+              color: '#764ba2',
+              textDecoration: 'none',
+              fontSize: '0.9rem'
             }}>
               Forgot password?
             </Link>
