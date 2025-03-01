@@ -1,22 +1,10 @@
 import React, { useState } from 'react';
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { Menu } from 'lucide-react';
-import { auth } from '../firebase/config';
-import { signOut } from 'firebase/auth';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [dropdownOpen, setDropdownOpen] = useState(false);
-    const navigate = useNavigate();
-
-    const handleLogout = async () => {
-        try {
-            await signOut(auth);
-            navigate('/login');
-        } catch (error) {
-            console.error('Error logging out:', error);
-        }
-    };
 
     const navItems = [
         { id: 'dashboard', label: 'Dashboard', path: '/dashboard' },
@@ -24,7 +12,7 @@ const Navbar = () => {
         { id: 'leaderboard', label: 'Leaderboard', path: '/leaderboard' },
         {
             id: 'communityDropdown',
-            label: 'YogAsna Community',
+            label: 'YogAsana Community',
             isDropdown: true,
             children: [
                 { id: 'communityFeed', label: 'Community Feed', path: '/community-feed' },
@@ -41,8 +29,12 @@ const Navbar = () => {
                 <div className="flex justify-between items-center">
                     {/* Logo */}
                     <Link to="/" className="flex items-center space-x-2">
-                        <img src="/yogaimage.jpg" alt="YogAsana Logo" className="h-15 w-15 rounded-md object-cover" />
-                        <span className="text-2xl font-semibold text-gray-800">YogAsana</span>
+                        <img 
+                            src="/yogaimage.jpg" 
+                            alt="YogAsana Logo" 
+                            className="h-12 w-12 rounded-md object-cover"
+                        />
+                        <span className="text-xl font-semibold text-gray-800">YogAsana</span>
                     </Link>
 
                     {/* Desktop Navigation - Split into left and right sections */}
@@ -96,23 +88,23 @@ const Navbar = () => {
                             ))}
                         </div>
 
-                        {/* Right aligned logout button */}
-                        <button
-                            onClick={handleLogout}
+                        {/* Register button */}
+                        <NavLink
+                            to="/signup"
                             className="px-5 py-2 rounded-lg transition-colors duration-150 text-lg font-medium bg-purple-600 text-white hover:bg-purple-700"
                         >
-                            Logout
-                        </button>
+                            Register
+                        </NavLink>
                     </div>
 
                     {/* Mobile menu button */}
                     <div className="md:hidden flex items-center space-x-3">
-                        <button
-                            onClick={handleLogout}
+                        <NavLink
+                            to="/signup"
                             className="px-4 py-2 rounded-lg text-base font-medium bg-purple-600 text-white hover:bg-purple-700"
                         >
-                            Logout
-                        </button>
+                            Register
+                        </NavLink>
                         <button className="p-2 rounded-md hover:bg-gray-100" onClick={() => setIsOpen(!isOpen)}>
                             <Menu size={28} />
                         </button>
