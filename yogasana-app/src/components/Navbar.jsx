@@ -1,7 +1,4 @@
-
-
-import React, { useState, useEffect } from 'react';
-import { useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, NavLink } from 'react-router-dom';
 import { Menu } from 'lucide-react';
 
@@ -9,6 +6,7 @@ const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const dropdownRef = useRef();
+
     const navItems = [
         { id: 'dashboard', label: 'Dashboard', path: '/dashboard' },
         { id: 'about', label: 'About', path: '/about' },
@@ -26,8 +24,24 @@ const Navbar = () => {
         }
     ];
 
+    // Close dropdown on outside click (desktop version)
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                setDropdownOpen(false);
+            }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
+
+
     return (
-        <nav className="bg-white shadow-md relative">
+        <nav className="bg-white shadow-md relative z-20"> {/* Add z-index to the nav */}
             <div className="container mx-auto px-4 py-3 max-w-6xl">
                 <div className="flex justify-between items-center">
                     {/* Logo */}
@@ -72,7 +86,7 @@ const Navbar = () => {
                                     </button>
 
                                     {dropdownOpen && (
-                                        <div className="absolute left-0 mt-2 w-56 bg-white rounded-lg shadow-lg py-2 z-10 border border-gray-100">
+                                        <div className="absolute left-0 mt-2 w-56 bg-white rounded-lg shadow-lg py-2 z-10 border border-gray-100"> {/* Added z-index to the dropdown itself */}
                                             {item.children.map((child) => (
                                                 <NavLink
                                                     key={child.id}
