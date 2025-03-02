@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+
+
+import React, { useState, useEffect } from 'react';
+import { useRef } from "react";
 import { Link, NavLink } from 'react-router-dom';
 import { Menu } from 'lucide-react';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [dropdownOpen, setDropdownOpen] = useState(false);
-
+    const dropdownRef = useRef();
     const navItems = [
         { id: 'dashboard', label: 'Dashboard', path: '/dashboard' },
         { id: 'about', label: 'About', path: '/about' },
@@ -24,14 +27,14 @@ const Navbar = () => {
     ];
 
     return (
-        <nav className="bg-white shadow-md">
+        <nav className="bg-white shadow-md relative">
             <div className="container mx-auto px-4 py-3 max-w-6xl">
                 <div className="flex justify-between items-center">
                     {/* Logo */}
                     <Link to="/" className="flex items-center space-x-2">
-                        <img 
-                            src="/yogaimage.jpg" 
-                            alt="YogAsana Logo" 
+                        <img
+                            src="/yogaimage.jpg"
+                            alt="YogAsana Logo"
                             className="h-12 w-12 rounded-md object-cover"
                         />
                         <span className="text-xl font-semibold text-gray-800">YogAsana</span>
@@ -52,7 +55,7 @@ const Navbar = () => {
                                     {item.label}
                                 </NavLink>
                             ) : (
-                                <div key={item.id} className="relative">
+                                <div key={item.id} className="relative" ref={dropdownRef}>
                                     <button
                                         onClick={() => setDropdownOpen(!dropdownOpen)}
                                         className="flex items-center space-x-2 px-3 py-2 rounded-lg hover:bg-purple-50 text-gray-700 transition-colors duration-200 text-lg font-medium"
@@ -113,7 +116,7 @@ const Navbar = () => {
 
                 {/* Mobile Navigation Menu */}
                 {isOpen && (
-                    <div className="md:hidden mt-2">
+                    <div className="md:hidden mt-2 relative z-50">
                         {navItems.map((item) => !item.isDropdown ? (
                             <NavLink
                                 key={item.id}
@@ -135,7 +138,8 @@ const Navbar = () => {
                                         key={child.id}
                                         to={child.path}
                                         className={({ isActive }) =>
-                                            `block w-full text-left pl-8 px-4 py-3 hover:bg-purple-50 transition-colors duration-150 text-base ${isActive ? 'text-purple-700 font-medium bg-purple-50' : 'text-gray-700'}`
+                                            `block w-full text-left pl-8 px-4 py-3 hover:bg-purple-50 transition-colors duration-150 text-base ${isActive ? 'text-purple-700 font-medium bg-purple-50' : 'text-gray-700'
+                                            }`
                                         }
                                         onClick={() => setIsOpen(false)}
                                     >
