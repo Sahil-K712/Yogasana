@@ -1,9 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { Menu } from 'lucide-react';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const dropdownRef = useRef(null);
+
+    // Close dropdown when clicking outside
+    useEffect(() => {
+        function handleClickOutside(event) {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                setIsOpen(false);
+            }
+        }
+        
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [dropdownRef]);
 
     // Remove Register from main navItems
     const navItems = [
@@ -21,7 +36,7 @@ const Navbar = () => {
     ];
 
     return (
-        <nav className="bg-white shadow-md">
+        <nav className="bg-white shadow-md relative">
             <div className="container mx-auto px-4 py-3 max-w-6xl">
                 <div className="flex justify-between items-center">
                     {/* Logo */}
@@ -46,7 +61,7 @@ const Navbar = () => {
                                     {item.label}
                                 </NavLink>
                             ) : (
-                                <div key={item.id} className="relative">
+                                <div key={item.id} className="relative" ref={dropdownRef}>
                                     <button
                                         onClick={() => setIsOpen(!isOpen)}
                                         className="flex items-center space-x-2 px-3 py-2 rounded-lg hover:bg-purple-50 text-gray-700 transition-colors duration-200 text-lg font-medium"
@@ -69,7 +84,7 @@ const Navbar = () => {
                                     </button>
 
                                     {isOpen && (
-                                        <div className="absolute left-0 mt-2 w-56 bg-white rounded-lg shadow-lg py-2 z-10 border border-gray-100">
+                                        <div className="absolute left-0 mt-2 w-56 bg-white rounded-lg shadow-lg py-2 z-50 border border-gray-100">
                                             {item.children.map((child) => (
                                                 <NavLink
                                                     key={child.id}
@@ -126,7 +141,7 @@ const Navbar = () => {
 
                 {/* Mobile Navigation Menu */}
                 {isOpen && (
-                    <div className="md:hidden mt-2">
+                    <div className="md:hidden mt-2 relative z-50">
                         {navItems.map((item) => !item.isDropdown ? (
                             <NavLink
                                 key={item.id}
@@ -144,19 +159,21 @@ const Navbar = () => {
                                 <div className="px-4 py-3 font-medium text-gray-700 text-lg">
                                     {item.label}
                                 </div>
-                                {item.children.map((child) => (
-                                    <NavLink
-                                        key={child.id}
-                                        to={child.path}
-                                        className={({ isActive }) =>
-                                            `block w-full text-left pl-8 px-4 py-3 hover:bg-purple-50 transition-colors duration-150 text-base ${isActive ? 'text-purple-700 font-medium bg-purple-50' : 'text-gray-700'
-                                            }`
-                                        }
-                                        onClick={() => setIsOpen(false)}
-                                    >
-                                        {child.label}
-                                    </NavLink>
-                                ))}
+                                <div className="bg-white">
+                                    {item.children.map((child) => (
+                                        <NavLink
+                                            key={child.id}
+                                            to={child.path}
+                                            className={({ isActive }) =>
+                                                `block w-full text-left pl-8 px-4 py-3 hover:bg-purple-50 transition-colors duration-150 text-base ${isActive ? 'text-purple-700 font-medium bg-purple-50' : 'text-gray-700'
+                                                }`
+                                            }
+                                            onClick={() => setIsOpen(false)}
+                                        >
+                                            {child.label}
+                                        </NavLink>
+                                    ))}
+                                </div>
                             </div>
                         ))}
                     </div>
