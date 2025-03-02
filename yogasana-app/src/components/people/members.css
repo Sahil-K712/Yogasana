@@ -1,0 +1,147 @@
+.community-section {
+    padding: 4rem 2rem;
+    background: #f8fafc;
+  }
+  
+  .section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  
+  .section-header h2 {
+    font-size: 2.5rem;
+    color: #8a371e;
+  }
+  
+  .subheading {
+    color: #64748b;
+    font-size: 1.2rem;
+  }
+  
+  .member-grid {
+    display: grid;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+  
+  .member-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    position: relative;
+  }
+  
+  .highlight-card {
+    border: 2px solid #eb7332;
+    transform: scale(1.02);
+  }
+  
+  .member-header {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .member-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #fed6bf;
+  }
+  
+  .member-role {
+    color: #4b5563;
+    font-size: 0.9rem;
+  }
+  
+  .achievement-badges {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+  }
+  
+  .achievement-badges span {
+    background: #fff6ef;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+  }
+  
+  blockquote {
+    font-style: italic;
+    color: #695547;
+    margin: 1.5rem 0;
+    padding-left: 1rem;
+    border-left: 3px solid #fdbf93;
+  }
+  
+  .community-cta{
+    margin-top: 20px;
+  }
+  .community-stats {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e2e8f0;
+  }
+  
+  .stat-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #63564b;
+  }
+  
+  .join-button {
+    background: #ee5c22;
+    color: white;
+    padding: 1rem 2.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+  
+  .join-button:hover {
+    /* transform: translateY(-2px); */
+    background: #da7953;
+
+  }
+  
+  .cta-subtext {
+    color: #8b7364;
+    margin-top: 1rem;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .member-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .section-header h2 {
+      font-size: 2rem;
+    }
+    
+    .member-card {
+      padding: 1.5rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .community-section {
+      padding: 2rem 1rem;
+    }
+    
+    .community-stats {
+      flex-direction: column;
+    }
+  }

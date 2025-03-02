@@ -1,0 +1,452 @@
+*{
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  /* Dashboard Styles */
+  
+  
+  .dash_main_section {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .center {
+    text-align: center;
+  }
+  
+  .highlight {
+    color: #ff6b6b;
+    font-weight: 600;
+  }
+  
+  /* Banner Section */
+  .banner img {
+    max-width: 100%;
+    height: auto;
+    margin: 2rem 0;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+  
+  /* Did You Know Section */
+  .fact {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+    margin: 3rem 0;
+    padding: 2rem;
+    background: #f8f9fa;
+    border-radius: 12px;
+  }
+  
+  .fact img {
+    max-width: 200px;
+    height: auto;
+  }
+  
+  .fact ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .fact li {
+    padding: 1rem;
+    margin: 0.5rem 0;
+    background: white;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  }
+  
+  .welcome{
+    font-size: 50px;
+    font-weight: bolder;
+    text-align: center;
+    color: rgb(255, 128, 0);
+    margin: auto;
+  }
+  
+  .welcome_logo{
+    padding:0 5px;
+    background-color: #ff6b6b;
+    color: white;
+    border-radius: 5px;
+   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  }
+  
+   
+  /* Mobile-first adjustments */
+  
+  
+  
+   
+  /* Plans Section */
+  .plans {
+    padding: 4rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  
+  .plane_title {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  
+  .plane_title span {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #2d3436;
+  }
+  
+  .multi_plans {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .plan_1, .plan_2, .plan_3 {
+    flex: 1;
+    min-width: 300px;
+    max-width: 400px;
+    padding: 2rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+  
+  .plan_1:hover, .plan_2:hover, .plan_3:hover {
+    transform: translateY(-5px);
+  }
+  
+  .plan_1 > div, .plan_2 > div, .plan_3 > div {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #e36b09;
+  }
+  
+  .plan_1 h1, .plan_2 h1, .plan_3 h1 {
+    font-size: 3rem;
+    margin: 1rem 0;
+    color: #2d3436;
+  }
+  
+  .plan_1 p, .plan_2 p, .plan_3 p {
+    color: #636e72;
+    margin: 0.5rem 0;
+  }
+  
+  .plan_1 button, .plan_2 button, .plan_3 button {
+    width: 100%;
+    padding: 1rem;
+    margin: 1.5rem 0;
+    background: #fa8a4e;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .plan_1 button:hover, .plan_2 button:hover, .plan_3 button:hover {
+    background: #f66600;
+  }
+  
+  .plan_1 b, .plan_2 b, .plan_3 b {
+    display: block;
+    font-size: 0.9rem;
+    color: #636e72;
+  }
+  
+   
+  
+  /* Special Plan Highlights */
+  .plan_1 {
+    border: 2px solid #e36f09;
+  }
+  
+  .plan_1 > div span {
+    color: #e35909;
+  }
+  
+  .plan_2 > div span {
+    color: #00b894;
+  }
+  
+  .plan_3 > div span {
+    color: #6c5ce7;
+  }
+  
+  .plan_1 p:first-of-type {
+    background: #fdece3;
+    color: #ff8324;
+    padding: 0.5rem;
+    border-radius: 4px;
+    display: inline-block;
+  }
+  
+  
+   
+  /* Instructors Section */
+  .instructors-section {
+    padding: 4rem 2rem;
+    background: #f9fafb;
+  }
+  .instructor-card a{
+    text-decoration: none;
+  }
+  
+  .section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #1a365d;
+    margin-bottom: 3rem;
+  }
+  
+  .instructors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .instructor-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .instructor-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .instructor-image {
+    position: relative;
+    height: 320px;
+    overflow: hidden;
+  }
+  
+  .instructor-image img {
+    width: 100%;
+    height: 100%;
+    object-fit:contain;
+    filter: grayscale(20%);
+  }
+  
+  .experience-badge {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+  
+  .instructor-info {
+    padding: 1.5rem;
+  }
+  
+  .instructor-info h3 {
+    color: #1a365d;
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+  }
+  
+  .specialty {
+    color: #4a5568;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  
+  .bio {
+    color: #718096;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+  
+  .social-links {
+    display: flex;
+    justify-content: space-around;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .social-icon {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: #f7fafc;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .social-icon:hover {
+    background: #eb7332;
+    color: white;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 480px) {
+    .dash_main_section {
+      padding: 1rem;
+    }
+  
+    h1.center {
+      font-size: 1.2rem;
+    }
+  
+    .fact {
+      margin: 2rem 0;
+      padding: 1rem;
+    }
+  
+    .fact img {
+      max-width: 120px;
+    }
+  
+    .fact li {
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+  
+    .banner img {
+      margin: 1rem 0;
+    }
+  
+    .instructors-section {
+      padding: 3rem 1rem;
+    }
+    
+    .section-title {
+      font-size: 1.75rem;
+    }
+    
+    .social-links {
+      flex-direction: column;
+    }
+    
+    .social-icon {
+      justify-content: center;
+    }
+  
+    .plans {
+      padding: 2rem 1rem;
+    }
+    
+    .plane_title span {
+      font-size: 1.4rem;
+    }
+    
+    .plan_1, .plan_2, .plan_3 {
+      min-width: auto;
+      padding: 1.2rem;
+    }
+    
+    .plan_1 > div, .plan_2 > div, .plan_3 > div {
+      font-size: 1.2rem;
+    }
+    
+    .plan_1 h1, .plan_2 h1, .plan_3 h1 {
+      font-size: 2rem;
+    }
+    
+    .plan_1 button, .plan_2 button, .plan_3 button {
+      padding: 0.8rem;
+      font-size: 1rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .dash_main_section {
+      padding: 1.5rem;
+    }
+  
+    h1.center {
+      font-size: 1.5rem;
+    }
+  
+    .fact {
+      flex-direction: column;
+      align-items: center;
+      padding: 1.5rem;
+    }
+  
+    .fact img {
+      max-width: 150px;
+    }
+  
+    .fact li {
+      font-size: 1rem;
+      padding: 0.8rem;
+    }
+  
+    .section-title {
+      font-size: 2rem;
+    }
+    
+    .instructor-image {
+      height: 280px;
+    }
+    
+    .instructor-info {
+      padding: 1rem;
+    }
+  
+    .plans {
+      padding: 3rem 1.5rem;
+    }
+    
+    .multi_plans {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .plan_1, .plan_2, .plan_3 {
+      width: 100%;
+      max-width: 500px;
+    }
+    
+    .plane_title span {
+      font-size: 1.6rem;
+    }
+    
+    .plan_1 h1, .plan_2 h1, .plan_3 h1 {
+      font-size: 2.5rem;
+    }
+  }
+  
+  
+  
+  @media (min-width: 1200px) {
+    .dash_main_section {
+      padding: 3rem 2rem;
+    }
+  
+    .multi_plans {
+      gap: 1.5rem;
+    }
+    
+    .plan_1, .plan_2, .plan_3 {
+      min-width: 280px;
+      padding: 1.5rem;
+    }
+    
+    .plane_title span {
+      font-size: 1.8rem;
+    }
+  }
