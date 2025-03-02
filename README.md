@@ -9,6 +9,19 @@
   Share your yoga journey, connect with fellow practitioners, and track your progress on YogAsana! Built with React + Vite, we're bringing the ancient practice of yoga into a modern, engaging community.
 </p>
 
+-----
+
+
+<h2> Deployement </h2>
+
+
+Deployed Link : [https://stupendous-faloodeh-ef7c39.netlify.app](https://stupendous-faloodeh-ef7c39.netlify.app)
+
+-----
+
+
+
+
 <h2>✨ Core Functionality: A Platform Built for Yoga Enthusiasts</h2>
 
 YogAsana is more than just a platform; it's a community hub for yoga practitioners of all levels. Connect, share, and grow together!
@@ -150,9 +163,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 *   [Sahil Kadavekar](https://github.com/Sahil-K712)
 *   [Vikash Mandal](https://github.com/vikash-mandal747)
 
-## Deployement
 
-Deployed Link : [https://stupendous-faloodeh-ef7c39.netlify.app](https://stupendous-faloodeh-ef7c39.netlify.app)
 
 <br>
 
