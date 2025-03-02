@@ -6,7 +6,15 @@ const CommunityFeed = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState('all');
+  const [showPostModal, setShowPostModal] = useState(false);
   const [follow, setFollow] = useState({});
+
+  // New state for post creation
+  const [newPostContent, setNewPostContent] = useState('');
+  const [newPostImage, setNewPostImage] = useState(null);
+  const [newPostImagePreview, setNewPostImagePreview] = useState('');
+  const [newPostImageCaption, setNewPostImageCaption] = useState('');
+  const [asanas, setAsanas] = useState([{ name: '', count: 1, difficulty: 1 }]);
 
   // Simulate fetching data
   useEffect(() => {
@@ -174,6 +182,91 @@ const CommunityFeed = () => {
     }));
   };
 
+  // NEW FUNCTIONS FOR POST MODAL FUNCTIONALITY
+
+  // Handle file input change for photo upload
+  const handlePhotoUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      // Create a preview URL for the selected image
+      const imageUrl = URL.createObjectURL(file);
+      setNewPostImage(file);
+      setNewPostImagePreview(imageUrl);
+    }
+  };
+
+  // Remove uploaded photo
+  const removePhoto = () => {
+    setNewPostImage(null);
+    setNewPostImagePreview('');
+    setNewPostImageCaption('');
+  };
+
+  // Handle asana input changes
+  const handleAsanaChange = (index, field, value) => {
+    const updatedAsanas = [...asanas];
+    updatedAsanas[index][field] = value;
+    setAsanas(updatedAsanas);
+  };
+
+  // Add a new asana field
+  const addAsanaField = () => {
+    setAsanas([...asanas, { name: '', count: 1, difficulty: 1 }]);
+  };
+
+  // Remove an asana field
+  const removeAsanaField = (index) => {
+    const updatedAsanas = [...asanas];
+    updatedAsanas.splice(index, 1);
+    setAsanas(updatedAsanas);
+  };
+
+  // Create a new post
+  const createPost = () => {
+    // Filter out empty asanas
+    const validAsanas = asanas.filter(asana => asana.name.trim() !== '');
+
+    // Validate post content
+    if (newPostContent.trim() === '' && validAsanas.length === 0 && !newPostImage) {
+      alert('Please add some content to your post');
+      return;
+    }
+
+    // Create new post object
+    const newPost = {
+      id: posts.length + 1,
+      user: {
+        name: 'Your Name', // In a real app, this would come from user profile
+        avatar: '/user.png', // user image
+        level: 'Intermediate' // In a real app, this would come from user profile
+      },
+      time: 'Just now',
+      content: newPostContent,
+      asanas: validAsanas,
+      likes: 0,
+      comments: 0,
+      liked: false,
+      saved: false,
+      image: newPostImagePreview,
+      imageCaption: newPostImageCaption
+    };
+
+    // Add new post to the beginning of the posts array
+    setPosts([newPost, ...posts]);
+
+    // Reset form and close modal
+    resetPostForm();
+    setShowPostModal(false);
+  };
+
+  // Reset post form
+  const resetPostForm = () => {
+    setNewPostContent('');
+    setNewPostImage(null);
+    setNewPostImagePreview('');
+    setNewPostImageCaption('');
+    setAsanas([{ name: '', count: 1, difficulty: 1 }]);
+  };
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-6 bg-gray-50 min-h-screen">
@@ -209,6 +302,15 @@ const CommunityFeed = () => {
             </button>
           </div>
 
+          <button
+            onClick={() => setShowPostModal(true)}
+            className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg transition-colors duration-200 flex items-center space-x-2 shadow-sm"
+          >
+            <span>New Post</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M12 5v14M5 12h14" />
+            </svg>
+          </button>
         </div>
       </div>
 
@@ -351,6 +453,165 @@ const CommunityFeed = () => {
               </button>
             </div>
           )}
+        </div>
+      )}
+
+      {/* New Post Modal - UPDATED */}
+      {showPostModal && (
+        <div className="fixed inset-0 bg-purple-600 bg-opacity-50 flex justify-center items-center p-4 z-50 backdrop-blur-sm">
+          <div className="bg-white rounded-xl shadow-lg p-6 w-full max-w-lg max-h-90vh overflow-y-auto">
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="text-xl font-bold text-gray-800">Create New Post</h3>
+              <button
+                onClick={() => {
+                  resetPostForm();
+                  setShowPostModal(false);
+                }}
+                className="text-gray-500 hover:text-gray-700 p-1 rounded-full hover:bg-gray-100"
+                aria-label="Close"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </button>
+            </div>
+
+            <div className="mb-4">
+              <textarea
+                placeholder="Share your yoga practice..."
+                value={newPostContent}
+                onChange={(e) => setNewPostContent(e.target.value)}
+                className="w-full p-3 border border-gray-300 rounded-lg resize-none h-32 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              ></textarea>
+            </div>
+
+            <div className="mb-4 p-4 border border-gray-200 rounded-lg bg-gray-50">
+              <div className="flex justify-between items-center mb-3">
+                <h4 className="font-medium text-gray-700">Add Asanas</h4>
+                <button
+                  className="text-purple-600 hover:text-purple-800 text-sm font-medium"
+                  onClick={addAsanaField}
+                >
+                  + Add More
+                </button>
+              </div>
+
+              {asanas.map((asana, index) => (
+                <div key={index} className="mb-2">
+                  <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 mb-2">
+                    <input
+                      type="text"
+                      placeholder="Asana name"
+                      value={asana.name}
+                      onChange={(e) => handleAsanaChange(index, 'name', e.target.value)}
+                      className="mt-5 flex-1 p-2  border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-purple-400"
+                    />
+                    <div className="flex gap-2">
+                      <div className="flex flex-col">
+                      <label className="text-sm text-gray-500">Count</label>
+                        <input
+                          type="number"
+                          placeholder="Count"
+                          value={asana.count}
+                          onChange={(e) => handleAsanaChange(index, 'count', parseInt(e.target.value) || 1)}
+                          className="w-full sm:w-20 p-2 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-purple-400"
+                          min="1"
+                        />
+                      </div>
+
+                      <div className="flex flex-col">
+                        <label className="text-sm text-gray-500">Difficulty</label>
+                        <select
+                            className="w-full sm:w-auto p-2 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-purple-400"
+                            value={asana.difficulty}
+                            onChange={(e) => handleAsanaChange(index, 'difficulty', parseInt(e.target.value))}
+                        >
+                            <option value="1">1 ★</option>
+                            <option value="2">2 ★</option>
+                            <option value="3">3 ★</option>
+                            <option value="4">4 ★</option>
+                            <option value="5">5 ★</option>
+                        </select>
+                      </div>
+
+                      {asanas.length > 1 && (
+                        <button
+                          onClick={() => removeAsanaField(index)}
+                          className="p-2 text-red-500 hover:bg-red-50 rounded"
+                          aria-label="Remove asana"
+                        >
+                          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                          </svg>
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Photo upload area - UPDATED */}
+            <div className="mb-6">
+              {newPostImagePreview ? (
+                <div className="relative rounded-lg overflow-hidden mb-2">
+                  <img
+                    src={newPostImagePreview}
+                    alt="Selected"
+                    className="w-full h-48 object-cover"
+                  />
+                  <button
+                    onClick={removePhoto}
+                    className="absolute top-2 right-2 bg-white rounded-full p-1 shadow hover:bg-red-100"
+                    aria-label="Remove photo"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <line x1="18" y1="6" x2="6" y2="18"></line>
+                      <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                  </button>
+                  <input
+                    type="text"
+                    placeholder="Add a caption for your photo..."
+                    value={newPostImageCaption}
+                    onChange={(e) => setNewPostImageCaption(e.target.value)}
+                    className="w-full p-2 border-t border-gray-200"
+                  />
+                </div>
+              ) : (
+                <label className="flex items-center gap-2 w-full justify-center p-4 border-2 border-dashed border-gray-300 rounded-lg text-gray-500 hover:bg-gray-50 transition-colors focus:outline-none focus:ring-2 focus:ring-purple-300 cursor-pointer">
+                  <Camera size={20} />
+                  <span>Add Photo</span>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    className="hidden"
+                    onChange={handlePhotoUpload}
+                  />
+                </label>
+              )}
+            </div>
+
+            <div className="flex justify-end gap-3">
+              <button
+                onClick={() => {
+                  resetPostForm();
+                  setShowPostModal(false);
+                }}
+                className="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
+              >
+                Cancel
+              </button>
+              <button
+                className="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors shadow-sm"
+                onClick={createPost}
+              >
+                Post
+              </button>
+            </div>
+          </div>
         </div>
       )}
     </div>
