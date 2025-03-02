@@ -146,9 +146,6 @@ yogasana-app/
 *   `/leaderboard` - Community rankings
 *   `/about` - Platform information
 
-## 📜 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 🙏 Acknowledgments
 
@@ -168,6 +165,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 <br>
 
 ---
+
+## 📜 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 <br>
 
