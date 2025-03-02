@@ -123,7 +123,7 @@
     text-align: center;
     padding: 4rem 1rem;
     margin: 4rem 0;
-    background: #b04e0e;
+    background: #0e5fb0;
     color: white;
     border-radius: 24px;
   }
@@ -137,11 +137,11 @@
   
   .primary-cta {
     background: white;
-    color: #e32a09;
+    color: #0960e3;
     padding: 1rem 2.5rem;
   }
   .primary-cta:hover{
-    background: rgb(255, 111, 0);
+    background: rgb(0, 179, 255);
     color: #ffffff;
   }
 
@@ -151,7 +151,7 @@
     color: white;
   }
   .secondary-cta:hover{
-    color: rgb(255, 94, 0); 
+    color: rgb(0, 157, 255); 
     background-color: #ffffff;
     border: 2px solid rgb(101, 101, 101);
 
